@@ -14,6 +14,7 @@ public class Player_Controller : MonoBehaviour
     private float moveHorizontal;
     private float y;
     private float x;
+    public int coinTotal;
     [SerializeField] public float moveSpeed;
     
     
@@ -52,5 +53,34 @@ public class Player_Controller : MonoBehaviour
         }
 
         transform.position = new Vector3(x, y, transform.position.z);
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+    public void PickupCollectable(int points)
+    {
+		coinTotal += points;
+	}
+    private void OnTriggerEnter2D(Collider2D other) {
+ 
+        if(other.tag == "Coin")
+        {
+            PickupCollectable(1);
+            Debug.Log(coinTotal);
+            
+            Destroy(other.gameObject);
+        }else if(other.tag == "Obstacle")
+        {
+            Die();
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        
     }
 }
