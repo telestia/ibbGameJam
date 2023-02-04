@@ -15,6 +15,8 @@ public class Player_Controller : MonoBehaviour
     private float y;
     private float x;
     public int coinTotal;
+    public int bulletCount = 0;
+    private int bulletCounter = 0; 
     [SerializeField] public float moveSpeed;
     
     
@@ -61,13 +63,19 @@ public class Player_Controller : MonoBehaviour
     public void PickupCollectable(int points)
     {
 		coinTotal += points;
+        bulletCounter++;
+        if(bulletCounter == 5)
+        {
+            bulletCount++;
+            bulletCounter = 0;
+        }
 	}
     private void OnTriggerEnter2D(Collider2D other) {
  
         if(other.tag == "Coin")
         {
             PickupCollectable(1);
-            Debug.Log(coinTotal);
+           
             
             Destroy(other.gameObject);
         }else if(other.tag == "Obstacle")

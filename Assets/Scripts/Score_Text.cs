@@ -17,7 +17,7 @@ public class Score_Text : MonoBehaviour
     {
         totalCoin = GetComponent<Player_Controller>().coinTotal;
         TMPro.TextMeshProUGUI tmp = textMesh.GetComponent<TMPro.TextMeshProUGUI>();
-        Debug.Log(totalCoin);
+        
         tmp.text = "Score: " + totalCoin;
     }
 }

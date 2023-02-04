@@ -23,7 +23,7 @@ public class Obstacle : MonoBehaviour
     {
         // trigger helicopter to explode when it collides with this
         other.transform.parent.gameObject.GetComponent<Player_Controller>().Die();
-        Debug.Log("hey");
+        
         // if our obstacle is tagged to be destroyed on collision, destroy it
         if (destroyObstacleOnCollision)
         {

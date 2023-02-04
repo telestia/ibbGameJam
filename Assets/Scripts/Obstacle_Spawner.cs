@@ -35,7 +35,7 @@ public class Obstacle_Spawner : MonoBehaviour
 
 			// instantiate all coins in this row separated by some random amount of space
 			for (int i = 0; i < obstacleThisRow; i++) {
-				Debug.Log(oldValue);
+				
 				Instantiate(prefab, new Vector3(10, arr[oldValue], -1), Quaternion.identity);
 				oldValue = randomDifferentNumber(oldValue);
 			}
