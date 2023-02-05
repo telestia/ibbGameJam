@@ -7,18 +7,24 @@ public class Obstacle_Spawner : MonoBehaviour
     public GameObject prefab;
     [SerializeField] private GameObject ground;
     private float[] arr;
+	private float groundMax;
+	private float groundMin;
 	private float groundHeight;
+	private float groundMid;
 	float[] even = {2, 4};
 
 
 	// Use this for initialization
 	void Start () {
 
-        groundHeight = ground.GetComponent<Renderer>().bounds.size.y;
+        groundMax = ground.GetComponent<GroundScript>().GetMaxYPoint();
+		groundMin = ground.GetComponent<GroundScript>().GetMinYPoint();
+		groundHeight = groundMax - groundMin;
+		groundMid = groundMax - groundHeight / 2;
 		
-        arr = new float[] { -groundHeight / 3,
-                groundHeight / 3,
-                0 };
+        arr = new float[] {groundMid - groundHeight / 3,
+                groundMid + groundHeight / 3,
+                groundMid};
 		// infinite coin spawning function, asynchronous
 		StartCoroutine(SpawnObstacle());
 	}

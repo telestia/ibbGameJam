@@ -16,8 +16,9 @@ public class Background_Scroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //mat.mainTextureOffset = new Vector2(Time.time * scrollSpeed, 0f);
         offset += (Time.deltaTime * scrollSpeed) / 10f;
-        
+
         mat.SetTextureOffset("_MainTex", new Vector2(offset, 0));
     }
 }

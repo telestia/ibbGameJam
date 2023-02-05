@@ -11,11 +11,13 @@ public class Coin_Spawner : MonoBehaviour
     
     float[] nums = {2, 3, 4};
     int c = 0;
+	private float groundMax;
+	private float groundMin;
 
 	// Use this for initialization
 	void Start () {
-
-        groundHeight = ground.GetComponent<Renderer>().bounds.size.y;
+        groundMax = ground.GetComponent<GroundScript>().GetMaxYPoint();
+		groundMin = ground.GetComponent<GroundScript>().GetMinYPoint();
 		
 
 		// infinite coin spawning function, asynchronous
@@ -33,11 +35,11 @@ public class Coin_Spawner : MonoBehaviour
             {
 			int coinThisRow = Random.Range(1, 4);
 
-			float oldValue = Random.Range(-2f, 2f);
+			float oldValue = Random.Range(groundMin, groundMax);
 
 			// instantiate all coins in this row separated by some random amount of space
 			for (int i = 0; i < coinThisRow; i++) {
-				Instantiate(prefab, new Vector3(10, (oldValue > 2f || oldValue < -2f) ? -100 : oldValue, -1), Quaternion.identity);
+				Instantiate(prefab, new Vector3(10, (oldValue > groundMax || oldValue < groundMin + 0.3) ? -100 : oldValue, -1), Quaternion.identity);
 				oldValue = oldValue - transform.localScale.y * 2 / 3;
 			}
             }

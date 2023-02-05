@@ -8,6 +8,10 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private GameObject background;
     private float backgroundWidth;
     private float backgroundHeight;
+    private float backgroundMinY;
+    private float backgroundMaxY;
+    private float backgroundMinX;
+    private float backgroundMaxX;
     private float playerWidth;
     private float playerHeight;
     private float moveVertical;
@@ -27,8 +31,10 @@ public class Player_Controller : MonoBehaviour
         moveSpeed = 7f;
         playerWidth = GetComponent<Renderer>().bounds.size.y;
         playerHeight = GetComponent<Renderer>().bounds.size.x;
-        backgroundWidth = background.GetComponent<Renderer>().bounds.size.y;
-        backgroundHeight = background.GetComponent<Renderer>().bounds.size.x;
+        backgroundMinY = background.GetComponent<GroundScript>().GetMinYPoint();
+        backgroundMaxY = background.GetComponent<GroundScript>().GetMaxYPoint();
+        backgroundMinX = background.GetComponent<GroundScript>().GetMinXPoint();
+        backgroundMaxX = background.GetComponent<GroundScript>().GetMaxXPoint();
     }
 
     // Update is called once per frame
@@ -44,8 +50,9 @@ public class Player_Controller : MonoBehaviour
         y = moveSpeed * moveVertical * Time.deltaTime + transform.position.y;
         x = moveSpeed * moveHorizontal * Time.deltaTime + transform.position.x;
 
- 
-        if(!(y < (backgroundWidth / 2 - playerWidth / 2) && y > -(backgroundWidth / 2 - playerWidth / 2)))
+
+        Debug.Log(backgroundMinY);
+        if((y < (backgroundMinY + playerWidth / 2) || y >  (backgroundMaxY - playerWidth / 2)))
         {
             y = transform.position.y;
         }
@@ -74,9 +81,7 @@ public class Player_Controller : MonoBehaviour
  
         if(other.tag == "Coin")
         {
-            PickupCollectable(1);
-           
-            
+            PickupCollectable(1);  
             Destroy(other.gameObject);
         }else if(other.tag == "Obstacle")
         {

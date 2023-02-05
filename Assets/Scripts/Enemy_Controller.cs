@@ -20,7 +20,7 @@ public class Enemy_Controller : MonoBehaviour
         
       
 
-        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, y + background.GetComponent<Renderer>().bounds.center.y, transform.position.z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +28,7 @@ public class Enemy_Controller : MonoBehaviour
         Debug.Log(collision.tag);
         if(collision.tag == "Bullet")
         {
-            Debug.Log("mermi");
+            
         }
     }
 }
