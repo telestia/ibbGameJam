@@ -23,7 +23,7 @@ public class ShooterController : MonoBehaviour
             int bulletCount = GetComponent<Player_Controller>().bulletCount;
             if(bulletCount > 0)
             {
-                Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
+                Vector3 position = new Vector3(transform.position.x, transform.position.y, -2);
 
 
                 GameObject newBullet = Instantiate(bullet, position, Quaternion.Euler(new Vector3(0, 0, 90)));

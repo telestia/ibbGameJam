@@ -29,8 +29,8 @@ public class Player_Controller : MonoBehaviour
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         moveSpeed = 7f;
-        playerWidth = GetComponent<Renderer>().bounds.size.y;
-        playerHeight = GetComponent<Renderer>().bounds.size.x;
+        playerHeight = GetComponent<Renderer>().bounds.size.y;
+        playerWidth = GetComponent<Renderer>().bounds.size.x;
         backgroundMinY = background.GetComponent<GroundScript>().GetMinYPoint();
         backgroundMaxY = background.GetComponent<GroundScript>().GetMaxYPoint();
         backgroundMinX = background.GetComponent<GroundScript>().GetMinXPoint();
@@ -51,12 +51,13 @@ public class Player_Controller : MonoBehaviour
         x = moveSpeed * moveHorizontal * Time.deltaTime + transform.position.x;
 
 
-        Debug.Log(backgroundMinY);
-        if((y < (backgroundMinY + playerWidth / 2) || y >  (backgroundMaxY - playerWidth / 2)))
+        
+        if((y < (backgroundMinY + playerHeight / 2) || y >  (backgroundMaxY - playerHeight / 2)))
         {
             y = transform.position.y;
         }
-        if(!(x < (backgroundHeight / 2 - playerHeight / 2 - 0.3) && x > -(backgroundHeight / 2 - playerHeight / 2 - 0.3)))
+        Debug.Log(backgroundMinX);
+        if(x < (backgroundMinX + (playerWidth / 2)) || x > (backgroundMaxX - (playerWidth / 2)))
         {
             x = transform.position.x;
         }

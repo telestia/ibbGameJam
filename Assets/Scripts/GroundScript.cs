@@ -13,31 +13,27 @@ public class GroundScript : MonoBehaviour
     void Start()
     {
         centerY = GetComponent<Renderer>().bounds.center.y;
-        width = GetComponent<Renderer>().bounds.size.y;
-    }
+        height = GetComponent<Renderer>().bounds.size.y;
+        centerX = GetComponent<Renderer>().bounds.center.x;
+        width = GetComponent<Renderer>().bounds.size.x;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
     }
 
     public float GetMinYPoint()
     {
-        return centerY - width / 2;
+        return centerY - height / 2;
     }
     public float GetMaxYPoint()
     {
-        return centerY + width / 2;
+        return centerY + height / 2;
     }
 
     public float GetMinXPoint()
     {
-        return centerX - height / 2;
+        return centerX - width / 2;
     }
     public float GetMaxXPoint()
     {
-        return centerY + height / 2;
+        return centerY + width / 2;
     }
 }
